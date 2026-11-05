@@ -32,8 +32,14 @@ def crear_tablero_aleatorio(filas: int, columnas: int, probabilidad_vida: float)
     Devuelve:
         Una lista de listas que representa el tablero con células vivas (True) y muertas (False).
     """
-    # TODO: Ejercicio 2
-    pass
+    tablero = crear_tablero(filas, columnas)
+
+    for f in range(len(tablero)):
+        for c in range(len(tablero[0])):
+            if random.random() < probabilidad_vida:
+                tablero[f][c] = True
+
+    return tablero
 
 def insertar_patron(tablero: list[list[bool]], patron: list[list[bool]], pos_fila: int, pos_col: int):
     """
