@@ -50,8 +50,15 @@ def insertar_patron(tablero: list[list[bool]], patron: list[list[bool]], pos_fil
         pos_fila (int): La fila en la que se insertará la esquina superior izquierda del patrón.
         pos_col (int): La columna en la que se insertará la esquina superior izquierda del patrón.
     """
-    # TODO: Ejercicio 3
-    pass
+
+    for f in range(len(patron)):
+        for c in range(len(patron[0])):
+            if patron[f][c] == True and f + pos_fila <= len(tablero) - 1 and c + pos_col <= len(tablero[0]) - 1:
+                tablero[f + pos_fila][c + pos_col] = True
+            else:
+                tablero[f + pos_fila][c + pos_col] = False
+
+    return tablero
 
 def contar_vecinos(tablero: list[list[bool]], fila: int, col: int) -> int:
     """
