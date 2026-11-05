@@ -53,10 +53,8 @@ def insertar_patron(tablero: list[list[bool]], patron: list[list[bool]], pos_fil
 
     for f in range(len(patron)):
         for c in range(len(patron[0])):
-            if patron[f][c] == True and f + pos_fila <= len(tablero) - 1 and c + pos_col <= len(tablero[0]) - 1:
-                tablero[f + pos_fila][c + pos_col] = True
-            else:
-                tablero[f + pos_fila][c + pos_col] = False
+            if f + pos_fila <= len(tablero) - 1 and c + pos_col <= len(tablero[0]) - 1:
+                tablero[f + pos_fila][c + pos_col] = patron[f][c]
 
     return tablero
 
@@ -71,8 +69,21 @@ def contar_vecinos(tablero: list[list[bool]], fila: int, col: int) -> int:
     Devuelve:
         El número de vecinos vivos (int).
     """
-    # TODO: Ejercicio 4
-    pass
+    vecinos = 0
+
+    for i in range(fila - 1, fila + 2):
+        if i > len(tablero) - 1:
+            i %= fila
+        for j in range(col - 1, col + 2):
+            if j > len(tablero[0]) - 1:
+                j %= col
+            if i != fila or j != col:
+                if tablero[i][j] == True:
+                    vecinos += 1
+
+    return vecinos
+        
+
 
 def calcular_siguiente_generacion(tablero) -> list[list[bool]]:
     """
