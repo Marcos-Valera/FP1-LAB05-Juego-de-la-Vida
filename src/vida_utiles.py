@@ -73,10 +73,10 @@ def contar_vecinos(tablero: list[list[bool]], fila: int, col: int) -> int:
 
     for i in range(fila - 1, fila + 2):
         if i > len(tablero) - 1:
-            i %= fila
+            i %= len(tablero)
         for j in range(col - 1, col + 2):
             if j > len(tablero[0]) - 1:
-                j %= col
+                j %= len(tablero[0])
             if i != fila or j != col:
                 if tablero[i][j] == True:
                     vecinos += 1
@@ -94,5 +94,16 @@ def calcular_siguiente_generacion(tablero) -> list[list[bool]]:
     Devuelve:
         Una nueva lista de listas que representa el tablero en la siguiente generación.
     """
-    # TODO: Ejercicio 5
-    pass
+    sgte_tablero = crear_tablero(len(tablero), len(tablero[0]))
+
+    for i in range(len(tablero)):
+        for j in range(len(tablero[0])):
+            vecinos = contar_vecinos(tablero, i, j)
+            if (vecinos == 2 or vecinos == 3) and tablero[i][j] == True:
+                sgte_tablero[i][j] = True
+            elif vecinos == 3 and tablero[i][j] == False:
+                sgte_tablero[i][j] = True
+            else:
+                sgte_tablero[i][j] = False
+
+    return sgte_tablero
