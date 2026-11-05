@@ -9,9 +9,16 @@ def crear_tablero(filas: int, columnas: int) -> list[list[bool]]:
     Devuelve:
         Una lista de listas con todos los elementos False.
     """
-    # TODO: Ejercicio 1
-    pass
+    filas_matriz = []
+    matriz = []
 
+    for i in range(filas):
+        for j in range(columnas):
+            filas_matriz.append(False)
+        matriz.append(filas_matriz)
+        filas_matriz = []
+
+    return matriz
 def crear_tablero_aleatorio(filas: int, columnas: int, probabilidad_vida: float) -> list[list[bool]]:
     """
     Crea un tablero con células vivas distribuidas aleatoriamente.
